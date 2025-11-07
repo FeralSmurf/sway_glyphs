@@ -20,7 +20,7 @@ set $menu wmenu-run -f "NotoSansMNerdFont 12"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $HOME/Downloads/bough.jpg fill
+output * bg $HOME/Downloads/Wallpapers/dark_forest.jpg fill
 #
 # Example configuration:
 #
@@ -30,12 +30,11 @@ output * bg $HOME/Downloads/bough.jpg fill
 
 ### Idle configuration
 #
-# Example configuration:
-#
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
+#          before-sleep 'swaylock -f -c 000000' \
+#          idlehint 250
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -63,7 +62,7 @@ output * bg $HOME/Downloads/bough.jpg fill
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+c kill
 
     # Start your launcher
     bindsym $mod+r exec $menu
@@ -109,7 +108,7 @@ output * bg $HOME/Downloads/bough.jpg fill
 #
 # Workspaces with glyph labels
 bindsym $mod+1 workspace 1: 
-bindsym $mod+2 workspace 2: 
+bindsym $mod+2 workspace 2: 
 bindsym $mod+3 workspace 3: 
 bindsym $mod+4 workspace 4: 
 bindsym $mod+5 workspace 5: 
@@ -200,8 +199,8 @@ exec_always --no-startup-id sh -c "pkill waybar; sleep 1; waybar"
 
 # Language/Keyboard layout
 input * {
-    xkb_layout "us,ro"
-    xkb_variant ",std"
+    xkb_layout "us,us,ro"
+    xkb_variant ",intl,std"
     xkb_options "grp:win_space_toggle"
 }
 
@@ -234,16 +233,16 @@ set $mantle    #181825
 set $crust     #11111b
 
 # Window colors
-client.focused          $sky      $surface0  $text     $sky     $sky
+client.focused          $green      $surface0  $text     $green     $green
 client.focused_inactive $surface1 $mantle    $subtext1 $surface1 $surface1
 client.unfocused        $surface1 $mantle    $subtext1 $surface1 $surface1
 client.urgent           $red      $red       $text     $red      $red
 client.placeholder      $surface1 $mantle    $subtext1 $surface1 $surface1
 client.background       $base
 
-gaps inner 10
-gaps outer 4
+gaps inner 2
+gaps outer 2
 smart_gaps on
-default_border pixel 2 # disable window titlebar
+default_border pixel 1 # disable window titlebar
 
 include /etc/sway/config.d/*
