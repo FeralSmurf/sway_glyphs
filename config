@@ -20,7 +20,7 @@ set $menu wmenu-run -f "NotoSansMNerdFont 12"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $HOME/Downloads/Wallpapers/darkwinter.jpg fill
+output * bg $HOME/.config/sway/darkwinter.jpg fill
 #
 # Example configuration:
 #
