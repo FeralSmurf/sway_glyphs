@@ -1,6 +1,7 @@
 # Default config for s/way
-# Default config for sway
+#
 # Copy this to ~/.config/sway/config and edit it to your liking.
+#
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
@@ -15,12 +16,12 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run -f "NotoSansMNerdFont 12"
+set $menu rofi -show drun
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $HOME/Downloads/Wallpapers/dark_forest.jpg fill
+output * bg ~/Downloads/Wallpapers/dark_forest.jpg fill
 #
 # Example configuration:
 #
@@ -30,11 +31,12 @@ output * bg $HOME/Downloads/Wallpapers/dark_forest.jpg fill
 
 ### Idle configuration
 #
+# Example configuration:
+#
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000' \
-#          idlehint 250
+#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -107,20 +109,19 @@ output * bg $HOME/Downloads/Wallpapers/dark_forest.jpg fill
 # Workspaces:
 #
 # Workspaces with glyph labels
-bindsym $mod+1 workspace 1: 
-bindsym $mod+2 workspace 2: 
-bindsym $mod+3 workspace 3: 
-bindsym $mod+4 workspace 4: 
-bindsym $mod+5 workspace 5: 
+bindsym $mod+1 workspace 1:
+bindsym $mod+2 workspace 2: 
+bindsym $mod+3 workspace 3:  
+bindsym $mod+4 workspace 4:
+bindsym $mod+5 workspace 5:  
 
 # Move focused container to workspace with glyph labels
-bindsym $mod+Shift+1 move container to workspace 1: 
-bindsym $mod+Shift+2 move container to workspace 2: 
-bindsym $mod+Shift+3 move container to workspace 3: 
-bindsym $mod+Shift+4 move container to workspace 4: 
-bindsym $mod+Shift+5 move container to workspace 5: 
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+bindsym $mod+Shift+1 move container to workspace 1:
+bindsym $mod+Shift+2 move container to workspace 2: 
+bindsym $mod+Shift+3 move container to workspace 3:
+bindsym $mod+Shift+4 move container to workspace 4:
+bindsym $mod+Shift+5 move container to workspace 5:
+
 #
 # Layout stuff:
 #
@@ -193,9 +194,15 @@ bindsym $mod+d mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special key to take a screenshot with grim
+    bindsym Print exec grim
 
+#
 # Status Bar:
-exec_always --no-startup-id sh -c "pkill waybar; sleep 1; waybar"
+#
+# Read `man 5 sway-bar` for more information about this section.
+exec_always --no-startup-id sh -c 'sleep 1; pkill waybar; waybar &'
+# exec_always --no-startup-id sh -c 'sleep 1; pkill conky; conky &'
 
 # Language/Keyboard layout
 input * {
@@ -204,45 +211,35 @@ input * {
     xkb_options "grp:win_space_toggle"
 }
 
-# Catppuccin Mocha color definitions
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $yellow    #f9e2af
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+# Catppuccin colour definitions
+set $colour0  #1E1E2E
+set $colour1  #181825
+set $colour2  #313244
+set $colour3  #45475A
+set $colour4  #CDD6F4
+set $colour5  #A6ADC8
+set $colour6  #D9E0EE
+set $colour7  #94E2D5
+set $colour8  #89B4FA
+set $colour9  #74C7EC
+set $colour10 #5C5CFF
+set $colour11 #F38BA8
+set $colour12 #FAB387
+set $colour13 #F9E2AF
+set $colour14 #A6E3A1
+set $colour15 #CBA6F7
 
 # Window colors
-client.focused          $green      $surface0  $text     $green     $green
-client.focused_inactive $surface1 $mantle    $subtext1 $surface1 $surface1
-client.unfocused        $surface1 $mantle    $subtext1 $surface1 $surface1
-client.urgent           $red      $red       $text     $red      $red
-client.placeholder      $surface1 $mantle    $subtext1 $surface1 $surface1
-client.background       $base
+client.focused          $colour14   $colour3  $colour6  $colour14  $colour14
+client.focused_inactive $colour3   $colour1  $colour4  $colour3  $colour3
+client.unfocused       $colour3   $colour1  $colour4  $colour3  $colour3
+client.urgent          $colour11  $colour11 $colour6  $colour11 $colour11
+client.placeholder     $colour3   $colour1  $colour4  $colour3  $colour3
+client.background      $colour0
 
-gaps inner 2
+gaps inner 10
 gaps outer 2
 smart_gaps on
-default_border pixel 1 # disable window titlebar
+default_border pixel 2 # disable window titlebar
 
 include /etc/sway/config.d/*
